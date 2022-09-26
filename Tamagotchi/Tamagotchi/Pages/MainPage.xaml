@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:tamagotchi="clr-namespace:Tamagotchi"
+             x:Class="Tamagotchi.MainPage">
+
+    <StackLayout>
+        <Frame BackgroundColor="DeepPink" Padding="24" CornerRadius="0">
+            <Label Text="Tamagotchi" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+        <Label Text="Overzichtsscherm" FontSize="Title" Padding="30,10,30,10"/>
+        <Label Text="On this page you will see if your tamagotchi is dying or not!" FontSize="16" Padding="30,0,30,0"/>
+        <Image Source="Cool_Tamagotchi.webp"
+               HeightRequest="250"/>
+        <Grid Padding="30">
+            <Button x:Name="FoodButton"
+                    Text="Food" 
+                    Clicked="GoToClickedPage"
+                    Grid.Row="0"
+                    Grid.Column="0"
+            />
+            <Button Text="Drinks" 
+                    Clicked="FoodPage"
+                    Grid.Row="0"
+                    Grid.Column="1"
+            />
+            <Button Text="Attention" 
+                    Clicked="FoodPage"
+                    Grid.Row="1"
+                    Grid.Column="0"
+            />
+            <Button Text="Sleep" 
+                    Clicked="SleepPage"
+                    Grid.Row="1"
+                    Grid.Column="1"
+            />
+            <Button Text="Alone Time" 
+                    Clicked="AloneTimePage" 
+                    Grid.Row="2"
+                    Grid.Column="0"
+            />
+            <Button x:Name="SocialButton"
+                    Text="Social" 
+                    Clicked="GoToClickedPage"
+                    Grid.Row="2"
+                    Grid.Column="1"
+            />
+        </Grid>
+        <!--
+        <Label FontSize="16" Padding="30,24,30,0">
+            <Label.FormattedText>
+                <FormattedString>
+                    <FormattedString.Spans>
+                        <Span Text="Learn more at "/>
+                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
+                    </FormattedString.Spans>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>-->
+    </StackLayout>
+</ContentPage>
