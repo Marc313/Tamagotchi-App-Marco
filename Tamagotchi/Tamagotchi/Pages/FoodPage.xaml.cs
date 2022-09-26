@@ -15,6 +15,7 @@ namespace Tamagotchi
         public string stats
         {
             get { return creatureRef.NeedsToString(); }
+            set { }
         }
 
         public FoodPage(Creature creature)
@@ -23,18 +24,7 @@ namespace Tamagotchi
             //PropertyChanged += UpdateUI;
 
             creatureRef = creature;
-            InitializeTimer();
 
-            InitializeComponent();
-        }
-
-        /*override OnDisappearing()
-        {
-
-        }*/
-
-        private void InitializeTimer()
-        {
             // In-game timer
             timer = new Timer();
             // Omdat apps minder zwaar zijn dan games kun je doubles gebruiken ipv floats om accuracy te verhogen.
@@ -42,7 +32,16 @@ namespace Tamagotchi
             timer.AutoReset = true;
             timer.Elapsed += OnTimerElapsed;
             timer.Start();
+            Console.WriteLine("Start");
+            /*var timeManager = DependencyService.Get<TimeManager>();
+            timeManager.InitializeTimer(1000.0, OnTimerElapsed);*/
+            InitializeComponent();
         }
+
+        /*override OnDisappearing()
+        {
+
+        }*/
 
         private void OnTimerElapsed(object sender, ElapsedEventArgs args)
         {

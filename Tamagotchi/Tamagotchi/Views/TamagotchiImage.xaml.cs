@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Tamagotchi.Pages
+namespace Tamagotchi.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SocialPage : ContentPage
+    public partial class TamagotchiImage : ContentView
     {
-        public Creature creature { get; set; }
-
-        public SocialPage(Creature creature)
+        public TamagotchiImage()
         {
-            this.creature = creature;
             InitializeComponent();
         }
     }

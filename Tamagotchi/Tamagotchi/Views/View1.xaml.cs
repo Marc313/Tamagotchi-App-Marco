@@ -11,24 +11,33 @@ namespace Tamagotchi
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class View1 : ContentView
     {
-        public static readonly BindableProperty textProperty = BindableProperty.Create(nameof(text), typeof(string), typeof(View1));
-        private Creature creatureRef;
+        public static readonly BindableProperty creatureProperty = BindableProperty.Create(nameof(creature), typeof(Creature), typeof(View1));
 
-        public string text
+        public Creature creature
         {
-            get => GetValue(textProperty) as string;
-            set => SetValue((textProperty), value);
+            get => GetValue(creatureProperty) as Creature;
+            set => SetValue((creatureProperty), value);
         }
 
         public string stats
         {
-            get { return "Hoi"; }
+            get { return creature.NeedsToString(); }
             set { }
         }
 
         public View1()
         {
+            BindingContext = this;
+
             InitializeComponent();
+        }
+
+        public void UpdateUI()
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                StatsLabel.Text = stats;
+            });
         }
 
         /*public string ShowNeeds()

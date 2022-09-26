@@ -5,7 +5,7 @@
              x:Class="Tamagotchi.Pages.SocialPage">
     <ContentPage.Content>
         <StackLayout>
-            <tamagotchi:View1 text=""/>
+            <tamagotchi:View1 creature="{Binding Creature}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

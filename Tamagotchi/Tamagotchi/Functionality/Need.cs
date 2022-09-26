@@ -1,10 +1,14 @@
-﻿namespace Tamagotchi
+﻿using System.ComponentModel;
+
+namespace Tamagotchi
 {
-    public class Need
+    public class Need : INotifyPropertyChanged
     {
         public double value;
         public double maxValue = 100;
         private double penaltyPerSecond;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public Need()
         {

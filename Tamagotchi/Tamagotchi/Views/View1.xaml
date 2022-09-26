@@ -7,7 +7,7 @@
             <Label 
                     x:Name="StatsLabel"
                     FontSize="22"
-                    Text="{Binding text}"
+                    Text="{Binding stats, Mode=OneWay}"
                     VerticalOptions="CenterAndExpand" 
                     HorizontalOptions="CenterAndExpand"
             />
