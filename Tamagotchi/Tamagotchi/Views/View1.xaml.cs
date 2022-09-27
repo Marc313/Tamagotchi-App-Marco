@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,25 +10,32 @@ using Xamarin.Forms.Xaml;
 namespace Tamagotchi
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class View1 : ContentView
+    public partial class View1 : ContentView, INotifyPropertyChanged
     {
-        public static readonly BindableProperty creatureProperty = BindableProperty.Create(nameof(creature), typeof(Creature), typeof(View1));
+        public static readonly BindableProperty MyCreatureProperty = BindableProperty.Create(nameof(MyCreature), typeof(Creature), typeof(View1), propertyChanged: CreaturePropertyChanged);
 
-        public Creature creature
+        private static void CreaturePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            get => GetValue(creatureProperty) as Creature;
-            set => SetValue((creatureProperty), value);
+            (bindable as View1).OnPropertyChanged(propertyName: nameof(MyCreature));
+            (bindable as View1).OnPropertyChanged(nameof(stats));
+            (bindable as View1).UpdateUI();
+        }
+
+        public Creature MyCreature
+        {
+            get => GetValue(MyCreatureProperty) as Creature;
+            set => SetValue((MyCreatureProperty), value);
         }
 
         public string stats
         {
-            get { return creature.NeedsToString(); }
+            get { return MyCreature?.NeedsToString; }
             set { }
         }
 
         public View1()
         {
-            BindingContext = this;
+            //BindingContext = this;
 
             InitializeComponent();
         }

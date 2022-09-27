@@ -4,6 +4,15 @@ namespace Tamagotchi
 {
     public class Need : INotifyPropertyChanged
     {
+        public double Value {
+            get => value;
+            set
+            {
+                this.value = value;
+                OnPropertyChanged(nameof(Value));
+            }
+        }
+
         public double value;
         public double maxValue = 100;
         private double penaltyPerSecond;
@@ -14,6 +23,11 @@ namespace Tamagotchi
         {
             value = maxValue;
             penaltyPerSecond = .1f;
+        }
+
+        private void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         public Need(double penaltyPerSecond)

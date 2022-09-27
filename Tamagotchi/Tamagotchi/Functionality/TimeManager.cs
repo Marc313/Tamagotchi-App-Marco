@@ -20,7 +20,7 @@ namespace Tamagotchi
             // In-game timer
             timer = new Timer();
             // Omdat apps minder zwaar zijn dan games kun je doubles gebruiken ipv floats om accuracy te verhogen.
-            timer.Interval = 1000.0;
+            timer.Interval = interval;
             timer.AutoReset = true;
             timer.Elapsed += action;
             timer.Start();

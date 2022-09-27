@@ -143,4 +143,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\MARCO.mp3" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Burger.png" />
+  </ItemGroup>
 </Project>

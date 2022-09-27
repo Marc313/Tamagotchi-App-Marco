@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:tamagotchi="clr-namespace:Tamagotchi" 
+             xmlns:tamagotchi1="clr-namespace:Tamagotchi.Views"
              x:Class="Tamagotchi.FoodPage">
     <ContentPage.Content>
         <!-- Opmerking: Kan niet meerdere layouts op een pagina dus?-->
@@ -11,24 +13,28 @@
                 VerticalOptions="Center" 
                 HorizontalOptions="Center"
             />
+            <tamagotchi:View1 
+                x:Name="CreatureBinding"
+                MyCreature="{Binding MyCreature, Mode=OneWay}"/>
             <Label 
                     x:Name="StatsLabel"
                     FontSize="22"
-                    Text="{Binding stats, Mode=OneWay}"
+                    Text="{Binding stats, Mode=OneWay}" 
                     VerticalOptions="CenterAndExpand" 
                     HorizontalOptions="CenterAndExpand"
             />
             <ImageButton
-                Source="Cool_Tamagotchi.webp"
+                x:Name="MovingButton"
+                Source="Burger.png"
                 Clicked="FeedBoii"
-                HeightRequest="40"
+                HeightRequest="100"
                 BackgroundColor="White"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"/>
-            <Button
+            <!--Button
                 Style="{StaticResource LavenderStyle}"
                 Text="Feed Boii"
-                Clicked="FeedBoii"/>
+                Clicked="FeedBoii"/-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

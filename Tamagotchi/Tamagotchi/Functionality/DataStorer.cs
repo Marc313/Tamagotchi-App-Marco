@@ -22,7 +22,17 @@ namespace Tamagotchi
         public Creature ReadData()
         {
             string creatureSerialized = Preferences.Get(CreatureKey, "");
-            Creature creature = JsonConvert.DeserializeObject<Creature>(creatureSerialized);
+
+            Creature creature = null;
+
+            try
+            {
+                creature = JsonConvert.DeserializeObject<Creature>(creatureSerialized);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
 
             return creature;
         }

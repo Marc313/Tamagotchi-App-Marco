@@ -11,11 +11,14 @@ namespace Tamagotchi.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SocialPage : ContentPage
     {
-        public Creature creature { get; set; }
+        public Creature MyCreature { get; set; }
 
         public SocialPage(Creature creature)
         {
-            this.creature = creature;
+            this.MyCreature = creature;
+
+            BindingContext = this;
+
             InitializeComponent();
         }
     }
