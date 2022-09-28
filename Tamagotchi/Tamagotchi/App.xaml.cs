@@ -14,13 +14,15 @@ namespace Tamagotchi
             DependencyService.RegisterSingleton<TimeManager>(new TimeManager());
             DependencyService.RegisterSingleton<DataStorer>(new DataStorer());
 
+            InitializeComponent();
+
+            DependencyService.RegisterSingleton<StyleManager>(new StyleManager());
+
+            // MainPage uses styling from app, so make sure InitializeComponent is before this
             MainPage = new NavigationPage(new MainPage())
             {
-                //BackgroundColor = Color.Violet,
-                BarBackgroundColor = Color.Violet,
+                BarBackgroundColor = Color.Violet, 
             };
-
-            InitializeComponent();
         }
 
         protected override void OnStart()

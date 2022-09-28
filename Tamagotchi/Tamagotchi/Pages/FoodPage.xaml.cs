@@ -66,7 +66,7 @@ namespace Tamagotchi
 
         private void FeedBoii(object sender, System.EventArgs e)
         {
-            MyCreature.Hunger.IncreaseValue(5);
+            MyCreature.Food.IncreaseValue(5);
             UpdateUI();
         }
     }

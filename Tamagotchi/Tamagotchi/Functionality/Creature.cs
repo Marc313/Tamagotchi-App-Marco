@@ -6,24 +6,12 @@ namespace Tamagotchi
 {
     public class Creature : INotifyPropertyChanged
     {
-        public Need hunger;
-        public Need thirst;
-
-        public Need Hunger { 
-            get { return hunger; } 
-            set 
-            {
-                hunger = value;
-                OnPropertyChanged(nameof(Hunger));
-                OnPropertyChanged(nameof(NeedsToString));
-            } 
-        }
-
-        public Need Thirst { get; set; }
+        public Need Food { get; set; }
+        public Need Hydration { get; set; }
         public Need Attention { get; set; }
         public Need Energy { get; set; }
         public Need SocialEnergy { get; set; }
-        public Need Loneliness { get; set; }
+        public Need Company { get; set; }
 
         //private string needsText;
         public string NeedsToString
@@ -35,14 +23,29 @@ namespace Tamagotchi
             set { }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public Creature()
+        {
+            Food = new Need();
+            Hydration = new Need();
+            Attention = new Need();
+            Energy = new Need();
+            SocialEnergy = new Need();
+            Company = new Need();
+
+            App.OnStartEvent += CheckForTimePenalty;
+            App.OnResumeEvent += CheckForTimePenalty;
+        }
+
         public string NeedsText()
         {
-            string stats = $"Hunger: {Hunger?.ValueToOneDecimal()}\n" +
-                            $"Thirst: {Thirst?.ValueToOneDecimal()}\n" +
+            string stats = $"Hunger: {Food?.ValueToOneDecimal()}\n" +
+                            $"Thirst: {Hydration?.ValueToOneDecimal()}\n" +
                             $"Attention: {Attention?.ValueToOneDecimal()}\n" +
                             $"Energy: {Energy?.ValueToOneDecimal()}\n" +
                             $"Social Energy: {SocialEnergy?.ValueToOneDecimal()}\n" +
-                            $"Loneliness: {Loneliness?.ValueToOneDecimal()}";
+                            $"Loneliness: {Company?.ValueToOneDecimal()}";
 
             return stats;
         }
@@ -52,19 +55,19 @@ namespace Tamagotchi
             NeedsToString = NeedsText();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public Creature()
+        public string ToJson()
         {
-            Hunger = new Need();
-            Thirst = new Need();
-            Attention = new Need();
-            Energy = new Need();
-            SocialEnergy = new Need();
-            Loneliness = new Need();
+            return NeedsToString;
+        }
 
-            App.OnStartEvent += CheckForTimePenalty;
-            App.OnResumeEvent += CheckForTimePenalty;
+        public void ReceiveAllTimePenalties(double timePassed)
+        {
+            Food.ReceiveTimePenalty(timePassed);
+            Hydration.ReceiveTimePenalty(timePassed);
+            Attention.ReceiveTimePenalty(timePassed);
+            Energy.ReceiveTimePenalty(timePassed);
+            SocialEnergy.ReceiveTimePenalty(timePassed);
+            Company.ReceiveTimePenalty(timePassed);
         }
 
         private void CheckForTimePenalty()
@@ -72,27 +75,6 @@ namespace Tamagotchi
             double timePassed = Preferences.Get("secondsPassed", 0.0);
             Console.WriteLine($"{timePassed} seconds have passed!");
             ReceiveAllTimePenalties(timePassed);
-        }
-
-        private void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-            SetNeedsText();
-        }
-
-        public void ReceiveAllTimePenalties(double timePassed)
-        {
-            Hunger.ReceiveTimePenalty(timePassed);
-            Thirst.ReceiveTimePenalty(timePassed);
-            Attention.ReceiveTimePenalty(timePassed);
-            Energy.ReceiveTimePenalty(timePassed);
-            SocialEnergy.ReceiveTimePenalty(timePassed);
-            Loneliness.ReceiveTimePenalty(timePassed);
-        }
-
-        public string ToJson()
-        {
-            return NeedsToString;
         }
     }
 }

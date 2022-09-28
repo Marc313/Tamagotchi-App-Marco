@@ -14,11 +14,21 @@ namespace Tamagotchi
             set { creature = value; }
         }
 
+        public Need pageSpecificNeed { get { return MyCreature.Hydration; } set { } }
+
+        public double ProgressValue 
+        { 
+            get => pageSpecificNeed.Value/100.0;
+            set { }
+        }
+
         public string stats
         {
             get { return MyCreature.NeedsToString; }
             set { }
         }
+
+        private uint animationLength = 750;
 
         public DrinkPage(Creature creature)
         {
@@ -50,8 +60,8 @@ namespace Tamagotchi
         private async void StartButtonAnimation()
         {
             double width = DeviceDisplay.MainDisplayInfo.Width;
-            await MovingButton.TranslateTo(-150, 0, 500);
-            await MovingButton.TranslateTo(150, 0, 500);
+            await MovingButton.TranslateTo(-150, 0, animationLength);
+            await MovingButton.TranslateTo(150, 0, animationLength);
             StartButtonAnimation();
         }
 
@@ -59,14 +69,14 @@ namespace Tamagotchi
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                //CreatureBinding.MyCreature = this.MyCreature;
+                ProgressBar.Progress = ProgressValue;
                 StatsLabel.Text = stats;
             });
         }
 
         private void FeedBoii(object sender, System.EventArgs e)
         {
-            MyCreature.Thirst.IncreaseValue(5);
+            MyCreature.Hydration.IncreaseValue(5);
             UpdateUI();
         }
     }

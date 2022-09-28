@@ -13,6 +13,13 @@
                 VerticalOptions="Center" 
                 HorizontalOptions="Center"
             />
+            <ProgressBar
+                x:Name="ProgressBar"
+                ProgressColor="Green"
+                Progress="{Binding ProgressValue, Mode=OneWay}"
+                Margin="20"
+                ScaleY="10"
+            />
             <!--tamagotchi:View1 
                 x:Name="CreatureBinding"
                 MyCreature="{Binding MyCreature, Mode=OneWay}"/-->

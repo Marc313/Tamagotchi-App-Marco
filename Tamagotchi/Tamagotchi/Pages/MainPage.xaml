@@ -6,51 +6,62 @@
              BackgroundColor="AliceBlue"
              x:Class="Tamagotchi.MainPage">
 
-    <StackLayout>
-        <Label Text="Overzichtsscherm" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="On this page you will see if your tamagotchi is dying or not!" FontSize="16" Padding="30,0,30,0"/>
-        <tamagotchi1:TamagotchiImage/>
-        <Label 
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Overzichtsscherm" FontSize="Title" Padding="30,10,30,10"/>
+            <Label Text="On this page you will see if your tamagotchi is dying or not!" FontSize="16" Padding="30,0,30,0"/>
+            <tamagotchi1:TamagotchiImage/>
+            <Label 
                     x:Name="StatsLabel"
                     FontSize="20"
                     Text="Bindings werken toch niet ;(" 
                     VerticalOptions="CenterAndExpand" 
                     HorizontalOptions="CenterAndExpand"
-        />
-        <Grid Padding="20">
-            <Button 
+            />
+            <Grid Padding="20">
+                <Button 
                     x:Name="FoodButton"
                     Text="Food" 
                     Clicked="FoodPage"
                     Grid.Row="0"
                     Grid.Column="0"
-            />
-            <Button Text="Drinks" 
+                />
+                <Button 
+                    x:Name="DrinkButton"
+                    Text="Drinks"
+                    Style="{StaticResource DangerStyle}"
                     Clicked="DrinkPage"
                     Grid.Row="0"
                     Grid.Column="1"
-            />
-            <Button Text="Attention" 
+                />
+                <Button 
+                    x:Name="AttentionButton"
+                    Text="Attention" 
                     Clicked="AttentionPage"
                     Grid.Row="1"
                     Grid.Column="0"
-            />
-            <Button Text="Sleep" 
+                />
+                <Button 
+                    x:Name="EneryButton"
+                    Text="Sleep" 
                     Clicked="SleepPage"
                     Grid.Row="1"
                     Grid.Column="1"
-            />
-            <Button Text="Alone Time" 
+                />
+                <Button 
+                    x:Name="AloneButton"
+                    Text="Alone Time" 
                     Clicked="AloneTimePage" 
                     Grid.Row="2"
                     Grid.Column="0"
-            />
-            <Button x:Name="SocialButton"
-                    Text="Social" 
+                />
+                <Button x:Name="SocialButton"
+                    Text="Company" 
                     Clicked="SocialPage"
                     Grid.Row="2"
                     Grid.Column="1"
-            />
-        </Grid>
-    </StackLayout>
+                />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

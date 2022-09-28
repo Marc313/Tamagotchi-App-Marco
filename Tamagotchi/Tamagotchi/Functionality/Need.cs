@@ -4,9 +4,36 @@ namespace Tamagotchi
 {
     public class Need : INotifyPropertyChanged
     {
+        public enum State
+        {
+            HEALTHY,
+            NOTGREAT,
+            DANGER,
+            EMERGENCY
+        }
+
+        public State NeedState { 
+            get
+            {
+                switch(Value)
+                {
+                    case <= 15 :
+                        return State.EMERGENCY;
+                    case <= 45 :
+                        return State.DANGER;
+                    case <= 75 :
+                        return State.NOTGREAT;
+                    case <= 100 :
+                        return State.HEALTHY;
+                    default:
+                        return State.HEALTHY;
+                } 
+            }
+        }
+
         public double Value { get; set; }
 
-        public double maxValue = 100;
+        private double maxValue = 100;
         private double penaltyPerSecond;
 
         public event PropertyChangedEventHandler PropertyChanged;
