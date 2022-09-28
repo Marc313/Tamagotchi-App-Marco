@@ -5,7 +5,6 @@
              xmlns:tamagotchi1="clr-namespace:Tamagotchi.Views"
              x:Class="Tamagotchi.DrinkPage">
     <ContentPage.Content>
-        <!-- Opmerking: Kan niet meerdere layouts op een pagina dus?-->
         <StackLayout>
             <Label 
                 Text="On this page you can feed your tamagotchi"
@@ -20,9 +19,6 @@
                 Margin="20"
                 ScaleY="10"
             />
-            <!--tamagotchi:View1 
-                x:Name="CreatureBinding"
-                MyCreature="{Binding MyCreature, Mode=OneWay}"/-->
             <Label 
                     x:Name="StatsLabel"
                     FontSize="22"
@@ -39,10 +35,6 @@
                 BackgroundColor="White"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"/>
-            <!--Button
-                Style="{StaticResource LavenderStyle}"
-                Text="Feed Boii"
-                Clicked="FeedBoii"/-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

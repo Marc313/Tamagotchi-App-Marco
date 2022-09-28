@@ -8,23 +8,13 @@ namespace Tamagotchi
     //[XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DrinkPage : ContentPage
     {
-        private Creature creature;
-        public Creature MyCreature {
-            get { return creature; }
-            set { creature = value; }
-        }
-
-        public Need pageSpecificNeed { get { return MyCreature.Hydration; } set { } }
-
-        public double ProgressValue 
-        { 
-            get => pageSpecificNeed.Value/100.0;
-            set { }
-        }
+        public Creature Creature { get; set; }
+        public Need pageSpecificNeed => Creature.Hydration;
+        public double ProgressValue => pageSpecificNeed.Value / 100;
 
         public string stats
         {
-            get { return MyCreature.NeedsToString; }
+            get { return Creature.NeedsToString; }
             set { }
         }
 
@@ -35,7 +25,7 @@ namespace Tamagotchi
             //PropertyChanged += UpdateUI;
             BindingContext = this;
 
-            MyCreature = creature;
+            Creature = creature;
 
             InitializeComponent();
 
@@ -59,9 +49,8 @@ namespace Tamagotchi
 
         private async void StartButtonAnimation()
         {
-            double width = DeviceDisplay.MainDisplayInfo.Width;
-            await MovingButton.TranslateTo(-150, 0, animationLength);
-            await MovingButton.TranslateTo(150, 0, animationLength);
+            await MovingButton.TranslateTo(-150, 0, 500);
+            await MovingButton.TranslateTo(150, 0, 500);
             StartButtonAnimation();
         }
 
@@ -76,7 +65,7 @@ namespace Tamagotchi
 
         private void FeedBoii(object sender, System.EventArgs e)
         {
-            MyCreature.Hydration.IncreaseValue(5);
+            Creature.Hydration.IncreaseValue(5);
             UpdateUI();
         }
     }
