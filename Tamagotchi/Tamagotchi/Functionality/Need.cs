@@ -4,16 +4,8 @@ namespace Tamagotchi
 {
     public class Need : INotifyPropertyChanged
     {
-        public double Value {
-            get => value;
-            set
-            {
-                this.value = value;
-                OnPropertyChanged(nameof(Value));
-            }
-        }
+        public double Value { get; set; }
 
-        public double value;
         public double maxValue = 100;
         private double penaltyPerSecond;
 
@@ -21,13 +13,8 @@ namespace Tamagotchi
 
         public Need()
         {
-            value = maxValue;
+            Value = maxValue;
             penaltyPerSecond = .1f;
-        }
-
-        private void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         public Need(double penaltyPerSecond)
@@ -35,16 +22,21 @@ namespace Tamagotchi
             this.penaltyPerSecond = penaltyPerSecond;
         }
 
+        private void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
         public void IncreaseValue(double increase)
         {
-            value += increase;
-            if (value > maxValue) value = maxValue;
+            Value += increase;
+            if (Value > maxValue) Value = maxValue;
         }
 
         public void DecreaseValue(double decrease)
         {
-            value -= decrease;
-            if (value < 0) value = 0;
+            Value -= decrease;
+            if (Value < 0) Value = 0;
         }
 
         public void ReceiveTimePenalty(double timePassed)
@@ -54,14 +46,14 @@ namespace Tamagotchi
 
         public string ValueToOneDecimal()
         {
-            string valueString = value.ToString();
+            string valueString = Value.ToString();
             if (valueString.Length <= 3)
             {
                 return valueString;
             }
             else
             {
-                return value.ToString().Substring(0, 4);
+                return Value.ToString().Substring(0, 4);
             }
         }
     }

@@ -3,17 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:tamagotchi="clr-namespace:Tamagotchi" 
              xmlns:tamagotchi1="clr-namespace:Tamagotchi.Views"
+             BackgroundColor="AliceBlue"
              x:Class="Tamagotchi.MainPage">
 
     <StackLayout>
-        <Frame BackgroundColor="DeepPink" Padding="24" CornerRadius="0">
-            <Label Text="Tamagotchi" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/> 
-        </Frame>
         <Label Text="Overzichtsscherm" FontSize="Title" Padding="30,10,30,10"/>
         <Label Text="On this page you will see if your tamagotchi is dying or not!" FontSize="16" Padding="30,0,30,0"/>
         <tamagotchi1:TamagotchiImage/>
-        <Grid Padding="30">
-            <Button x:Name="FoodButton"
+        <Label 
+                    x:Name="StatsLabel"
+                    FontSize="20"
+                    Text="Bindings werken toch niet ;(" 
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand"
+        />
+        <Grid Padding="20">
+            <Button 
+                    x:Name="FoodButton"
                     Text="Food" 
                     Clicked="FoodPage"
                     Grid.Row="0"

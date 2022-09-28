@@ -12,7 +12,13 @@ namespace Tamagotchi
         public App()
         {
             DependencyService.RegisterSingleton<TimeManager>(new TimeManager());
-            MainPage = new NavigationPage(new MainPage());
+            DependencyService.RegisterSingleton<DataStorer>(new DataStorer());
+
+            MainPage = new NavigationPage(new MainPage())
+            {
+                //BackgroundColor = Color.Violet,
+                BarBackgroundColor = Color.Violet,
+            };
 
             InitializeComponent();
         }

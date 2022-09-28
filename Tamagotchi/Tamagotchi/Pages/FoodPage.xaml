@@ -13,9 +13,9 @@
                 VerticalOptions="Center" 
                 HorizontalOptions="Center"
             />
-            <tamagotchi:View1 
+            <!--tamagotchi:View1 
                 x:Name="CreatureBinding"
-                MyCreature="{Binding MyCreature, Mode=OneWay}"/>
+                MyCreature="{Binding MyCreature, Mode=OneWay}"/-->
             <Label 
                     x:Name="StatsLabel"
                     FontSize="22"
@@ -23,6 +23,7 @@
                     VerticalOptions="CenterAndExpand" 
                     HorizontalOptions="CenterAndExpand"
             />
+            <tamagotchi1:TamagotchiImage/>
             <ImageButton
                 x:Name="MovingButton"
                 Source="Burger.png"

@@ -1,5 +1,6 @@
 ﻿using Android.Media;
 using System;
+using System.Timers;
 using Tamagotchi.Pages;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -8,84 +9,93 @@ namespace Tamagotchi
 {
     public partial class MainPage : ContentPage
     {
-        private Creature creature;
+        public Creature Creature { get; set; }
+        public string stats => Creature.NeedsToString;
+
         private DataStorer dataStorer;
+        private double timerInterval = 5000.0;
 
         public MainPage()
         {
-            // Alternative Constructor
-            /*creature = new Creature
-            {
-                Attention.value = 50f;
-            }*/
-
             App.OnSleepEvent += SaveCreatureData;
             PrepareCreature();
 
             InitializeComponent();
-        }        
+
+            UpdateUI();
+            var timeManager = DependencyService.Get<TimeManager>();
+            timeManager.InitializeTimer(timerInterval, OnTimerElapsed);
+        }
 
         private void PrepareCreature()
         {
             dataStorer = new DataStorer();
 
-            creature = dataStorer.ReadData();
+            Creature = dataStorer.ReadData();
 
-            if (creature == null)
+            if (Creature == null)
             {
-                creature = new Creature();
-                dataStorer.CreateData(creature);
+                Creature = new Creature();
+                dataStorer.CreateData(Creature);
             }
-            else
+        }
+
+        private void OnTimerElapsed(object sender, ElapsedEventArgs args)
+        {
+            //double interval
+            Creature.ReceiveAllTimePenalties(timerInterval/1000.0);
+            SaveCreatureData();
+            UpdateUI(); // Zou zonder moeten kunnen
+            //Console.WriteLine(stats);
+        }
+
+        private void UpdateUI()
+        {
+            Device.BeginInvokeOnMainThread(() =>
             {
-                if (Preferences.ContainsKey("secondsPassed"))
-                {
-                    //double timePassed = Preferences.Get("secondsPassed", 0);
-                    double timePassed = 10.0;
-                    creature.ReceiveAllTimePenalties(timePassed);
-                }
-            }
+                StatsLabel.Text = stats;
+            });
         }
 
         private void FoodPage(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new FoodPage(creature));
+            Navigation.PushAsync(new FoodPage(Creature));
         }
 
-        private void GoToClickedPage(object sender, EventArgs e)
+       /* private void GoToClickedPage(object sender, EventArgs e)
         {
             Page page = new Page();
             if (sender.Equals(FoodButton))
             {
-                page = new FoodPage(creature);
+                page = new FoodPage(Creature);
             }
             else if (sender.Equals(SocialButton))
             {
-                page = new SocialPage(creature); 
+                page = new SocialPage(Creature); 
             }
 
             Navigation.PushAsync(page);
-        }
+        }*/
 
         private void SleepPage(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new FoodPage(creature));
+            Navigation.PushAsync(new FoodPage(Creature));
         }
 
         private void AloneTimePage(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new FoodPage(creature));
+            Navigation.PushAsync(new FoodPage(Creature));
         }
 
         private void SocialPage(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new SocialPage(creature));
+            Navigation.PushAsync(new SocialPage(Creature));
         }
 
         private void SaveCreatureData()
         {
             Console.WriteLine("SAVED");
-            dataStorer.UpdateData(creature);
+            dataStorer.UpdateData(Creature);
         }
 
         /*private void PlaySound()

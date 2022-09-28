@@ -29,7 +29,8 @@ namespace Tamagotchi
 
         private void OnAppStart()
         {
-
+            Console.WriteLine("START");
+            OnAppResume();
         }
 
         private void OnAppSleep()
@@ -37,10 +38,13 @@ namespace Tamagotchi
             // Utc is internationale tijd, overal gelijk
             DateTime sleepTime = DateTime.UtcNow;
             Preferences.Set("SleepTime", sleepTime);
+            Console.WriteLine($"Sleep time set to: {sleepTime}");
         }
 
         private void OnAppResume()
         {
+            Console.WriteLine("RESUME");
+
             DateTime dateTime = Preferences.Get("SleepTime", DateTime.UtcNow);
             TimeSpan timeSpan = DateTime.UtcNow - dateTime;
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Timers;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Tamagotchi
@@ -10,9 +11,8 @@ namespace Tamagotchi
         private Creature creature;
         public Creature MyCreature {
             get { return creature; }
-            set { creature = value; OnPropertyChanged(nameof(MyCreature)); }
+            set { creature = value; }
         }
-        private Timer timer;
 
         public string stats
         {
@@ -27,41 +27,31 @@ namespace Tamagotchi
 
             MyCreature = creature;
 
-            // In-game timer
-            timer = new Timer();
-            // Omdat apps minder zwaar zijn dan games kun je doubles gebruiken ipv floats om accuracy te verhogen.
-            timer.Interval = 1000.0;
-            timer.AutoReset = true;
-            timer.Elapsed += OnTimerElapsed;
-            timer.Start();
-            Console.WriteLine("Start");
-
-
-            /*var timeManager = DependencyService.Get<TimeManager>();
-            timeManager.InitializeTimer(1000.0, OnTimerElapsed);*/
             InitializeComponent();
 
             StartButtonAnimation();
+        }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
         }
 
         private async void StartButtonAnimation()
         {
-            await MovingButton.TranslateTo(-100, 0, 500);
-            await MovingButton.TranslateTo(100, 0, 500);
+            double width = DeviceDisplay.MainDisplayInfo.Width;
+            await MovingButton.TranslateTo(-150, 0, 500);
+            await MovingButton.TranslateTo(150, 0, 500);
             StartButtonAnimation();
         }
 
-        /*override OnDisappearing()
+        private void UpdateUI()
         {
-
-        }*/
-
-        private void OnTimerElapsed(object sender, ElapsedEventArgs args)
-        {
-            MyCreature.Hunger.ReceiveTimePenalty(timer.Interval/1000.0);
-            UpdateUI(); // Zou zonder moeten kunnen
-            //Console.WriteLine(stats);
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                //CreatureBinding.MyCreature = this.MyCreature;
+                StatsLabel.Text = stats;
+            });
         }
 
         private void FeedBoii(object sender, System.EventArgs e)
@@ -71,15 +61,6 @@ namespace Tamagotchi
 
             //await StatsLabel.RotateTo(90, 500, Easing.SinIn);
             //StatsLabel.TranslateTo(-100, 0, 300, Easing.BounceIn);    // Vanuit het scherm: eerst vna in naar uit, dan van uit naar in.
-        }
-
-        private void UpdateUI()
-        {
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                CreatureBinding.MyCreature = this.MyCreature;
-                StatsLabel.Text = stats;
-            });
         }
     }
 }

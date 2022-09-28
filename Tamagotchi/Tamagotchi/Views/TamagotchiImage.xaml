@@ -4,6 +4,6 @@
              x:Class="Tamagotchi.Views.TamagotchiImage">
     <ContentView.Content>
         <Image Source="Cool_Tamagotchi.webp" 
-                   HeightRequest="250"/>
+                   HeightRequest="200"/>
     </ContentView.Content>
 </ContentView>

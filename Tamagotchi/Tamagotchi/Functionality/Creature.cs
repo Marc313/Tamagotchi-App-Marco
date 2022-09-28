@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using Xamarin.Essentials;
 
 namespace Tamagotchi
 {
@@ -61,6 +62,16 @@ namespace Tamagotchi
             Energy = new Need();
             SocialEnergy = new Need();
             Loneliness = new Need();
+
+            App.OnStartEvent += CheckForTimePenalty;
+            App.OnResumeEvent += CheckForTimePenalty;
+        }
+
+        private void CheckForTimePenalty()
+        {
+            double timePassed = Preferences.Get("secondsPassed", 0.0);
+            Console.WriteLine($"{timePassed} seconds have passed!");
+            ReceiveAllTimePenalties(timePassed);
         }
 
         private void OnPropertyChanged(string name)
