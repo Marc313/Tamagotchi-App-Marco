@@ -6,7 +6,7 @@ using Xamarin.Forms;
 namespace Tamagotchi
 {
     //[XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FoodPage : ContentPage
+    public partial class AttentionPage : ContentPage
     {
         private Creature creature;
         public Creature MyCreature {
@@ -20,7 +20,7 @@ namespace Tamagotchi
             set { }
         }
 
-        public FoodPage(Creature creature)
+        public AttentionPage(Creature creature)
         {
             //PropertyChanged += UpdateUI;
             BindingContext = this;
@@ -66,7 +66,7 @@ namespace Tamagotchi
 
         private void FeedBoii(object sender, System.EventArgs e)
         {
-            MyCreature.Hunger.IncreaseValue(5);
+            MyCreature.Attention.IncreaseValue(5);
             UpdateUI();
         }
     }

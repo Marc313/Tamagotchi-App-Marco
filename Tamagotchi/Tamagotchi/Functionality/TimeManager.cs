@@ -27,6 +27,20 @@ namespace Tamagotchi
             Console.WriteLine("Start");
         }
 
+        public void AddTimerEvent(ElapsedEventHandler action)
+        {
+            if (timer == null) { return; }
+
+            timer.Elapsed += action;
+        }
+
+        public void RemoveTimerEvent(ElapsedEventHandler action)
+        {
+            if (timer == null) { return; }
+
+            timer.Elapsed -= action;
+        }
+
         private void OnAppStart()
         {
             Console.WriteLine("START");

@@ -24,6 +24,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Pages\EnergyPage.xaml.cs">
+      <DependentUpon>EnergyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\DrinkPage.xaml.cs">
+      <DependentUpon>DrinkPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\AttentionPage.xaml.cs">
+      <DependentUpon>AttentionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\AlonePage.xaml.cs">
+      <DependentUpon>AlonePage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\FoodPage.xaml.cs">
       <DependentUpon>FoodPage.xaml</DependentUpon>
     </Compile>

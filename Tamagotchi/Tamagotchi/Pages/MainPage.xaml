@@ -26,12 +26,12 @@
                     Grid.Column="0"
             />
             <Button Text="Drinks" 
-                    Clicked="FoodPage"
+                    Clicked="DrinkPage"
                     Grid.Row="0"
                     Grid.Column="1"
             />
             <Button Text="Attention" 
-                    Clicked="FoodPage"
+                    Clicked="AttentionPage"
                     Grid.Row="1"
                     Grid.Column="0"
             />
@@ -52,16 +52,5 @@
                     Grid.Column="1"
             />
         </Grid>
-        <!--
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>-->
     </StackLayout>
 </ContentPage>

@@ -146,4 +146,16 @@
   <ItemGroup>
     <BundleResource Include="Resources\Burger.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Carton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Bed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Curtain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Football.png" />
+  </ItemGroup>
 </Project>

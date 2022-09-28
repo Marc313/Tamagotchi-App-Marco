@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:tamagotchi="clr-namespace:Tamagotchi" 
+             xmlns:tamagotchi1="clr-namespace:Tamagotchi.Views"
+             x:Class="Tamagotchi.AlonePage">
+    <ContentPage.Content>
+        <!-- Opmerking: Kan niet meerdere layouts op een pagina dus?-->
+        <StackLayout>
+            <Label 
+                Text="On this page you can feed your tamagotchi"
+                Padding="20"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+            />
+            <!--tamagotchi:View1 
+                x:Name="CreatureBinding"
+                MyCreature="{Binding MyCreature, Mode=OneWay}"/-->
+            <Label 
+                    x:Name="StatsLabel"
+                    FontSize="22"
+                    Text="{Binding stats, Mode=OneWay}" 
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand"
+            />
+            <tamagotchi1:TamagotchiImage/>
+            <ImageButton
+                x:Name="MovingButton"
+                Source="Burger.png"
+                Clicked="FeedBoii"
+                HeightRequest="100"
+                BackgroundColor="White"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"/>
+            <!--Button
+                Style="{StaticResource LavenderStyle}"
+                Text="Feed Boii"
+                Clicked="FeedBoii"/-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

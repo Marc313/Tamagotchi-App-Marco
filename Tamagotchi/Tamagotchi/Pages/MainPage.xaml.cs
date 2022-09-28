@@ -77,14 +77,24 @@ namespace Tamagotchi
             Navigation.PushAsync(page);
         }*/
 
+        private void DrinkPage(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new DrinkPage(Creature));
+        }
+
+        private void AttentionPage(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AttentionPage(Creature));
+        }
+
         private void SleepPage(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new FoodPage(Creature));
+            Navigation.PushAsync(new EnergyPage(Creature));
         }
 
         private void AloneTimePage(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new FoodPage(Creature));
+            Navigation.PushAsync(new AlonePage(Creature));
         }
 
         private void SocialPage(object sender, EventArgs e)
