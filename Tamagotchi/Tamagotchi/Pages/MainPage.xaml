@@ -29,7 +29,6 @@
                 <Button 
                     x:Name="DrinkButton"
                     Text="Drinks"
-                    Style="{StaticResource DangerStyle}"
                     Clicked="DrinkPage"
                     Grid.Row="0"
                     Grid.Column="1"

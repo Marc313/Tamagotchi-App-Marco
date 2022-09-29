@@ -9,7 +9,7 @@ namespace Tamagotchi
     public partial class FoodPage : ContentPage
     {
         public Creature Creature { get; set; }
-        public Need pageSpecificNeed => Creature.Hydration;
+        public Need pageSpecificNeed => Creature.Food;
         public double ProgressValue => pageSpecificNeed.Value / 100;
 
         private uint animationLenght = 500;
@@ -58,6 +58,8 @@ namespace Tamagotchi
         {
             Device.BeginInvokeOnMainThread(() =>
             {
+                Color progressColor = ColorManager.GetColorFromState(pageSpecificNeed.NeedState);
+                ProgressBar.ProgressColor = progressColor;
                 ProgressBar.Progress = ProgressValue;
                 StatsLabel.Text = stats;
             });

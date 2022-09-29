@@ -9,7 +9,7 @@ namespace Tamagotchi
     public partial class AttentionPage : ContentPage
     {
         public Creature Creature { get; set; }
-        public Need pageSpecificNeed => Creature.Hydration;
+        public Need pageSpecificNeed => Creature.Attention;
         public double ProgressValue => pageSpecificNeed.Value / 100;
 
         public string stats
@@ -49,8 +49,8 @@ namespace Tamagotchi
 
         private async void StartButtonAnimation()
         {
-            await MovingButton.TranslateTo(-150, 0, 500);
-            await MovingButton.TranslateTo(150, 0, 500);
+            await MovingButton.TranslateTo(-150, 0, animationLenght);
+            await MovingButton.TranslateTo(150, 0, animationLenght);
             StartButtonAnimation();
         }
 
@@ -58,6 +58,8 @@ namespace Tamagotchi
         {
             Device.BeginInvokeOnMainThread(() =>
             {
+                Color progressColor = ColorManager.GetColorFromState(pageSpecificNeed.NeedState);
+                ProgressBar.ProgressColor = progressColor;
                 ProgressBar.Progress = ProgressValue;
                 StatsLabel.Text = stats;
             });

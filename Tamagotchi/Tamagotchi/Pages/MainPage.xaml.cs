@@ -26,7 +26,6 @@ namespace Tamagotchi
 
             CreateTimer();
             UpdateUI();
-            UpdateButtonStyles();
         }
 
         private void PrepareCreature()
@@ -55,7 +54,6 @@ namespace Tamagotchi
 
             SaveCreatureData();
             UpdateUI(); // Zou zonder moeten kunnen
-            UpdateButtonStyles();
         }
 
         private void UpdateUI()
@@ -63,10 +61,11 @@ namespace Tamagotchi
             Device.BeginInvokeOnMainThread(() =>
             {
                 StatsLabel.Text = stats;
+                UpdateButtonColors();
             });
         }
 
-        private void UpdateButtonStyles()
+        /*private void UpdateButtonStyles()
         {
             if (styleManager == null)
             {
@@ -79,6 +78,16 @@ namespace Tamagotchi
             EneryButton.Style = styleManager.GetStyleFromState(Creature.Energy.NeedState);
             AloneButton.Style = styleManager.GetStyleFromState(Creature.SocialEnergy.NeedState);
             SocialButton.Style = styleManager.GetStyleFromState(Creature.Company.NeedState);
+        }*/
+
+        private void UpdateButtonColors()
+        {
+            FoodButton.BackgroundColor = ColorManager.GetColorFromState(Creature.Food.NeedState);
+            DrinkButton.BackgroundColor = ColorManager.GetColorFromState(Creature.Hydration.NeedState);
+            AttentionButton.BackgroundColor = ColorManager.GetColorFromState(Creature.Attention.NeedState);
+            EneryButton.BackgroundColor = ColorManager.GetColorFromState(Creature.Energy.NeedState);
+            AloneButton.BackgroundColor = ColorManager.GetColorFromState(Creature.SocialEnergy.NeedState);
+            SocialButton.BackgroundColor = ColorManager.GetColorFromState(Creature.Company.NeedState);
         }
 
         private void SaveCreatureData()

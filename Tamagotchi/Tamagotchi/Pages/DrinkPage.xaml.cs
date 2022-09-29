@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Android.App;
+using System;
 using System.Timers;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -8,6 +9,8 @@ namespace Tamagotchi
     //[XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DrinkPage : ContentPage
     {
+        public NotificationManager notificationManager;
+
         public Creature Creature { get; set; }
         public Need pageSpecificNeed => Creature.Hydration;
         public double ProgressValue => pageSpecificNeed.Value / 100;
@@ -49,8 +52,8 @@ namespace Tamagotchi
 
         private async void StartButtonAnimation()
         {
-            await MovingButton.TranslateTo(-150, 0, 500);
-            await MovingButton.TranslateTo(150, 0, 500);
+            await MovingButton.TranslateTo(-150, 0, animationLength);
+            await MovingButton.TranslateTo(150, 0, animationLength);
             StartButtonAnimation();
         }
 
@@ -58,6 +61,8 @@ namespace Tamagotchi
         {
             Device.BeginInvokeOnMainThread(() =>
             {
+                Color progressColor = ColorManager.GetColorFromState(pageSpecificNeed.NeedState);
+                ProgressBar.ProgressColor = progressColor;
                 ProgressBar.Progress = ProgressValue;
                 StatsLabel.Text = stats;
             });
