@@ -124,6 +124,9 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Plugin.LocalNotification">
+      <Version>10.0.2</Version>
+    </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
       <Version>4.0.3</Version>
     </PackageReference>
@@ -157,5 +160,8 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Football.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Game.png" />
   </ItemGroup>
 </Project>

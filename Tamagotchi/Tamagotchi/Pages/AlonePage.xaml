@@ -30,7 +30,7 @@
             <tamagotchi1:TamagotchiImage/>
             <ImageButton
                 x:Name="MovingButton"
-                Source="Burger.png"
+                Source="Game.png"
                 Clicked="FeedBoii"
                 HeightRequest="100"
                 BackgroundColor="White"
