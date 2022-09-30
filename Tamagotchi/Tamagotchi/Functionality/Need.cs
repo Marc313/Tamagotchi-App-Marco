@@ -48,6 +48,7 @@ namespace Tamagotchi
 
         public Need(double penaltyPerSecond)
         {
+            Value = 50.0;
             this.penaltyPerSecond = penaltyPerSecond;
         }
 

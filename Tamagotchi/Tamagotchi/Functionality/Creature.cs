@@ -46,13 +46,17 @@ namespace Tamagotchi
 
         public Creature()
         {
+            double needPenalty1 = 1 / 864;  // In 24 hours, this will deplete a value of 100
+            double needPenatly2 = needPenalty1 / 1.5;
+            double needPenatly3 = needPenalty1 / 2;
+
             needs = new List<Need>();
-            needs.Add(Food = new Need());
-            needs.Add(Hydration = new Need());
-            needs.Add(Attention = new Need());
-            needs.Add(Energy = new Need());
-            needs.Add(SocialEnergy = new Need());
-            needs.Add(Company = new Need());
+            needs.Add(Food = new Need(needPenalty1));
+            needs.Add(Hydration = new Need(needPenalty1));
+            needs.Add(Attention = new Need(needPenatly2));
+            needs.Add(Energy = new Need(needPenatly2));
+            needs.Add(SocialEnergy = new Need(needPenatly2));
+            needs.Add(Company = new Need(needPenatly3));
 
             App.OnStartEvent += CheckForTimePenalty;
             App.OnResumeEvent += CheckForTimePenalty;
