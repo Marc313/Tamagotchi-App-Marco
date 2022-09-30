@@ -41,21 +41,8 @@ namespace Tamagotchi
 
             InitializeComponent();
 
-            TimeManager timeManager = DependencyService.Get<TimeManager>();
-            timeManager.AddTimerEvent(OnTimerElapsed);
+            creature.OnCreatureChanged += UpdateUI;
             StartButtonAnimation();
-        }
-
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-
-            TimeManager timeManager = DependencyService.Get<TimeManager>();
-            timeManager.RemoveTimerEvent(OnTimerElapsed);
-        }
-
-        private void OnTimerElapsed(object sender, ElapsedEventArgs args)
-        {
             UpdateUI();
         }
 
@@ -64,6 +51,7 @@ namespace Tamagotchi
             await MovingButton.TranslateTo(-150, 0, animationLength);
             await MovingButton.TranslateTo(150, 0, animationLength);
             StartButtonAnimation();
+            UpdateUI();
         }
 
         private void UpdateUI()
@@ -78,12 +66,17 @@ namespace Tamagotchi
             });
         }
 
+        private async void PlayScalingAnimation(View view)
+        {
+            await view.ScaleTo(1.20, 150);
+            view.ScaleTo(1, 150);
+        }
+
         private void FeedBoii(object sender, System.EventArgs e)
         {
             Creature.Hydration.IncreaseValue(5);
-            UpdateUI();
-
-            NotificationManager.SendNotification("Your tamagotchi is getting very thirsty");
+            PlayScalingAnimation(TamagotchiImage as View);
+            PlayScalingAnimation(MovingButton as View);
         }
     }
 }

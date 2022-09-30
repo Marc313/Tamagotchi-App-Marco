@@ -42,9 +42,12 @@ namespace Tamagotchi
 
             InitializeComponent();
 
+            creature.OnCreatureChanged += UpdateUI;
+
             TimeManager timeManager = DependencyService.Get<TimeManager>();
             timeManager.AddTimerEvent(OnTimerElapsed);
             StartButtonAnimation();
+            UpdateUI();
         }
 
         protected override void OnDisappearing()
@@ -79,10 +82,17 @@ namespace Tamagotchi
             });
         }
 
+        private async void PlayScalingAnimation(View view)
+        {
+            await view.ScaleTo(1.20, 150);
+            view.ScaleTo(1, 150);
+        }
+
         private void FeedBoii(object sender, System.EventArgs e)
         {
             Creature.Attention.IncreaseValue(5);
-            UpdateUI();
+            PlayScalingAnimation(TamagotchiImage as View);
+            PlayScalingAnimation(MovingButton as View);
         }
     }
 }

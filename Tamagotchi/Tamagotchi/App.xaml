@@ -8,29 +8,10 @@
                 <Setter Property="TextColor" Value="Black"/>
             </Style>
             <Style TargetType="Button">
+                <Setter Property="FontSize" Value="17"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="CornerRadius" Value="10"/>
-                <Setter Property="BackgroundColor" Value="LimeGreen"/>
-            </Style>
-            <Style TargetType="Button" x:Key="EmergencyStyle">
-                <Setter Property="TextColor" Value="White"/>
-                <Setter Property="CornerRadius" Value="10"/>
-                <Setter Property="BackgroundColor" Value="Red"/>
-            </Style>
-            <Style x:Key="DangerStyle" TargetType="Button">
-                <Setter Property="TextColor" Value="White"/>
-                <Setter Property="CornerRadius" Value="10"/>
-                <Setter Property="BackgroundColor" Value="Orange"/>
-            </Style>
-            <Style x:Key="NotGreatStyle" TargetType="Button">
-                <Setter Property="TextColor" Value="White"/>
-                <Setter Property="CornerRadius" Value="10"/>
-                <Setter Property="BackgroundColor" Value="LightGreen"/>
-            </Style>
-            <Style x:Key="HealthyStyle" TargetType="Button">
-                <Setter Property="TextColor" Value="White"/>
-                <Setter Property="CornerRadius" Value="10"/>
-                <Setter Property="BackgroundColor" Value="LimeGreen"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

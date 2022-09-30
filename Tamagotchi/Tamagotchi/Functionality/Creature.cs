@@ -14,6 +14,8 @@ namespace Tamagotchi
         public Need SocialEnergy { get; set; }
         public Need Company { get; set; }
 
+        public event Action OnCreatureChanged;
+
         private List<Need> needs;
 
         //private string needsText;
@@ -40,6 +42,11 @@ namespace Tamagotchi
 
             App.OnStartEvent += CheckForTimePenalty;
             App.OnResumeEvent += CheckForTimePenalty;
+
+            foreach (Need need in needs)
+            {
+                need.OnValueChanged += InvokeCreatureChanged;
+            }
         }
 
         public string NeedsText()
@@ -77,6 +84,11 @@ namespace Tamagotchi
             double timePassed = Preferences.Get("secondsPassed", 0.0);
             Console.WriteLine($"{timePassed} seconds have passed!");
             ReceiveAllTimePenalties(timePassed);
+        }
+
+        private void InvokeCreatureChanged()
+        {
+            OnCreatureChanged?.Invoke();
         }
     }
 }

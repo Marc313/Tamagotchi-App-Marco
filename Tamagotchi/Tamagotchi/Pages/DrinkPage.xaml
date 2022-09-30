@@ -24,6 +24,7 @@
                 
             </StackLayout>
             <Image 
+                x:Name="TamagotchiImage"
                 Source="Cool_Tamagotchi.webp"
                 HeightRequest="200"
                 Grid.Row="1"

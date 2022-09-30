@@ -11,7 +11,6 @@ namespace Tamagotchi
         public string stats => Creature.NeedsToString;
 
         private DataStorer dataStorer;
-        private StyleManager styleManager;
         private double timerInterval = 5000.0;
 
         public MainPage()
@@ -21,11 +20,11 @@ namespace Tamagotchi
 
             InitializeComponent();
 
-            /*Style style = Application.Current.Resources["HealthyStyle"] as Style;
-            FoodButton.Style = style;*/
-
             CreateTimer();
             UpdateUI();
+
+            Creature.OnCreatureChanged += UpdateUI;
+            Creature.OnCreatureChanged += SaveCreatureData;
         }
 
         private void PrepareCreature()
@@ -51,34 +50,15 @@ namespace Tamagotchi
         {
             double intervalToSeconds = timerInterval / 1000.0;
             Creature.ReceiveAllTimePenalties(intervalToSeconds);
-
-            SaveCreatureData();
-            UpdateUI(); // Zou zonder moeten kunnen
         }
 
         private void UpdateUI()
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                StatsLabel.Text = stats;
                 UpdateButtonColors();
             });
         }
-
-        /*private void UpdateButtonStyles()
-        {
-            if (styleManager == null)
-            {
-                styleManager = DependencyService.Get<StyleManager>();
-            }
-
-            FoodButton.Style = styleManager.GetStyleFromState(Creature.Food.NeedState);
-            DrinkButton.Style = styleManager.GetStyleFromState(Creature.Hydration.NeedState);
-            AttentionButton.Style = styleManager.GetStyleFromState(Creature.Attention.NeedState);
-            EneryButton.Style = styleManager.GetStyleFromState(Creature.Energy.NeedState);
-            AloneButton.Style = styleManager.GetStyleFromState(Creature.SocialEnergy.NeedState);
-            SocialButton.Style = styleManager.GetStyleFromState(Creature.Company.NeedState);
-        }*/
 
         private void UpdateButtonColors()
         {
@@ -96,6 +76,18 @@ namespace Tamagotchi
             dataStorer.UpdateData(Creature);
         }
 
+        private void ResetCreature()
+        {
+            Creature = new Creature();
+            dataStorer.DeleteData(Creature);
+            dataStorer.CreateData(Creature);
+
+            Creature.OnCreatureChanged += UpdateUI;
+            Creature.OnCreatureChanged += SaveCreatureData;
+
+            UpdateUI();
+
+        }
 
         // Button EventHandlers \\
 
@@ -129,13 +121,9 @@ namespace Tamagotchi
             Navigation.PushAsync(new SocialPage(Creature));
         }
 
-        /*private void PlaySound()
+        private void ResetButton(object sender, EventArgs e)
         {
-            // NOTE: Only works for android??
-            MediaPlayer mediaPlayer = new MediaPlayer();
-            mediaPlayer.SetDataSource("MARCO.mp3");
-            mediaPlayer.Prepare();
-            mediaPlayer.Start();
-        }*/
+            ResetCreature();
+        }
     }
 }

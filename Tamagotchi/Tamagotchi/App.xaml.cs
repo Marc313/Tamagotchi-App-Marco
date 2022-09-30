@@ -16,7 +16,7 @@ namespace Tamagotchi
 
             InitializeComponent();
 
-            DependencyService.RegisterSingleton<StyleManager>(new StyleManager());
+            //DependencyService.RegisterSingleton<StyleManager>(new StyleManager());
 
             // MainPage uses styling from app, so make sure InitializeComponent is before this
             MainPage = new NavigationPage(new MainPage())

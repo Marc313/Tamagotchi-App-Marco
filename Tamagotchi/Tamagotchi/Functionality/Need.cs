@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace Tamagotchi
 {
@@ -31,16 +32,17 @@ namespace Tamagotchi
             }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        public event Action OnValueChanged;
+
         public double Value { get; set; }
 
         private double maxValue = 100;
         private double penaltyPerSecond;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public Need()
         {
-            Value = maxValue;
+            Value = 50.0;
             penaltyPerSecond = .1f;
         }
 
@@ -58,12 +60,14 @@ namespace Tamagotchi
         {
             Value += increase;
             if (Value > maxValue) Value = maxValue;
+            OnValueChanged.Invoke();
         }
 
         public void DecreaseValue(double decrease)
         {
             Value -= decrease;
             if (Value < 0) Value = 0;
+            OnValueChanged.Invoke();
         }
 
         public void ReceiveTimePenalty(double timePassed)
