@@ -29,7 +29,7 @@
                 Grid.Row="1"
             />
             <Label 
-                    x:Name="AttentionTextLabel"
+                    x:Name="DrinkTextLabel"
                     FontSize="16"
                     Text="{Binding NeedStateText}"
                     Margin="25, 50"

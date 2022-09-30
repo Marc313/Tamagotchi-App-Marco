@@ -27,7 +27,7 @@
                 Grid.Row="1"
             />
             <Label 
-                    x:Name="AttentionTextLabel"
+                    x:Name="CompanyTextLabel"
                     FontSize="16"
                     Text="{Binding NeedStateText}"
                     Margin="25, 50"
