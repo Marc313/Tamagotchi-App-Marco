@@ -33,7 +33,6 @@ namespace Tamagotchi
         // Wanneer je uit de app gaat. Kan zijn dat de applicatie gestopt is, dus sluit hier dingen af!
         protected override void OnSleep()
         {
-            Console.WriteLine("SLEEP");
             OnSleepEvent?.Invoke();
         }
 

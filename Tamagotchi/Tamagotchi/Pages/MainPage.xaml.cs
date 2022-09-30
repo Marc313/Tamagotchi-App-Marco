@@ -20,6 +20,8 @@ namespace Tamagotchi
 
             InitializeComponent();
 
+            App.OnSleepEvent += ScheduleNotifcation;
+
             CreateTimer();
             UpdateUI();
 
@@ -88,6 +90,12 @@ namespace Tamagotchi
             Creature.OnCreatureChanged += SaveCreatureData;
 
             UpdateUI();
+        }
+
+        private void ScheduleNotifcation()
+        {
+            double secondsToNotification = Creature.SecondsToFirstEmergency();
+            NotificationManager.ScheduleNotificationAfterSeconds("Open the app and take care of Kuchipachi", secondsToNotification);
         }
 
         // Button EventHandlers \\

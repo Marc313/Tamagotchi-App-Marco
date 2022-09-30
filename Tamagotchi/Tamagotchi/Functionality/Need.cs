@@ -51,11 +51,6 @@ namespace Tamagotchi
             this.penaltyPerSecond = penaltyPerSecond;
         }
 
-        private void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
         public void IncreaseValue(double increase)
         {
             Value += increase;
@@ -78,6 +73,13 @@ namespace Tamagotchi
         public double ValueToOneDecimal()
         {
             return Math.Round(Value * 10.0) / 10.0;
+        }
+
+        public double SecondsToEmergency()
+        {
+            // AmountSeconds * penalty = Value - 15 => AmountSeconds = (Value - 15)/penalty
+            if (Value <= 15) return 0.0;
+            else return (Value - 15) / penaltyPerSecond;
         }
     }
 }

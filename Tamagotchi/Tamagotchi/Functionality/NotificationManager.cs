@@ -11,13 +11,13 @@ namespace Tamagotchi
             LocalNotificationCenter.Current.Show(notification);
         }
 
-        public static void ScheduleNotification(string description, DateTime notifyTime, string title = default)
+        public static void ScheduleNotificationAfterSeconds(string description, double secondsToNotification, string title = default)
         {
             NotificationRequest notification = CreateNotification(description, title);
 
             notification.Schedule = new NotificationRequestSchedule
             {
-                NotifyTime = notifyTime
+                NotifyTime = DateTime.Now.AddSeconds(secondsToNotification)
             };
 
             LocalNotificationCenter.Current.Show(notification);

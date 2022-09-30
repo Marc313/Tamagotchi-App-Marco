@@ -93,6 +93,20 @@ namespace Tamagotchi
             }
         }
 
+        public double SecondsToFirstEmergency()
+        {
+            double lowestSeconds = double.MaxValue;
+            foreach(Need need in needs)
+            {
+                double seconds = need.SecondsToEmergency();
+                if (need.SecondsToEmergency() < lowestSeconds)
+                {
+                    lowestSeconds = need.SecondsToEmergency();
+                }
+            }
+            return lowestSeconds;
+        }
+
         private void CheckForTimePenalty()
         {
             double timePassed = Preferences.Get("secondsPassed", 0.0);
