@@ -46,7 +46,7 @@ namespace Tamagotchi
 
         public Creature()
         {
-            double needPenalty1 = 1 / 864;  // In 24 hours, this will deplete a value of 100
+            double needPenalty1 = 1.0 / 864.0;  // In 24 hours, this will deplete a value of 100
             double needPenatly2 = needPenalty1 / 1.5;
             double needPenatly3 = needPenalty1 / 2;
 
