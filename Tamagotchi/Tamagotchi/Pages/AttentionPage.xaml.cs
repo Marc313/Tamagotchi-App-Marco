@@ -1,6 +1,4 @@
-﻿using System;
-using System.Timers;
-using Xamarin.Essentials;
+﻿using System.Timers;
 using Xamarin.Forms;
 
 namespace Tamagotchi
@@ -11,11 +9,26 @@ namespace Tamagotchi
         public Creature Creature { get; set; }
         public Need pageSpecificNeed => Creature.Attention;
         public double ProgressValue => pageSpecificNeed.Value / 100;
+        public string NeedValueText => $"Attention: {pageSpecificNeed.ValueToOneDecimal()}";
 
-        public string stats
+        public string NeedStateText
         {
-            get { return Creature.NeedsToString; }
-            set { }
+            get
+            {
+                switch (pageSpecificNeed.NeedState)
+                {
+                    case Need.State.HEALTHY:
+                        return "Your tamagotchi enjoyed playing with you";
+                    case Need.State.NOTGREAT:
+                        return "Your tamagotchi would like to play with you";
+                    case Need.State.DANGER:
+                        return "Your tamagotchi is bored, play some soccer with it";
+                    case Need.State.EMERGENCY:
+                        return "Your tamagotchi is so bored it is plotting to take over the world";
+                    default:
+                        return "Your tamagotchi is having trouble communicating with you";
+                }
+            }
         }
 
         private uint animationLenght = 500;
@@ -61,7 +74,8 @@ namespace Tamagotchi
                 Color progressColor = ColorManager.GetColorFromState(pageSpecificNeed.NeedState);
                 ProgressBar.ProgressColor = progressColor;
                 ProgressBar.Progress = ProgressValue;
-                StatsLabel.Text = stats;
+                NeedText.Text = NeedValueText;
+                AttentionTextLabel.Text = NeedStateText;
             });
         }
 

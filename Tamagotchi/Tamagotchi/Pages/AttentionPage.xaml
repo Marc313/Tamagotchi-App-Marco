@@ -5,41 +5,48 @@
              xmlns:tamagotchi1="clr-namespace:Tamagotchi.Views"
              x:Class="Tamagotchi.AttentionPage">
     <ContentPage.Content>
-        <!-- Opmerking: Kan niet meerdere layouts op een pagina dus?-->
-        <StackLayout>
+        <Grid>
+            <StackLayout Grid.Row="0" Margin="0, 20">
+                <Label 
+                    x:Name="NeedText"
+                    FontSize="20"
+                    Text="Attention: "
+                    HorizontalOptions="Start"
+                    Margin="20, 10"
+                 />
+                <ProgressBar
+                    x:Name="ProgressBar"
+                    ProgressColor="LimeGreen"
+                    Progress="{Binding ProgressValue, Mode=OneWay}"
+                    ScaleY="10"
+                    Margin="20, 0"
+                />
+            </StackLayout>
+            <Image 
+                Source="Cool_Tamagotchi.webp"
+                HeightRequest="200"
+                Grid.Row="1"
+            />
             <Label 
-                Text="On this page you can feed your tamagotchi"
-                Padding="20"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center"
+                    x:Name="AttentionTextLabel"
+                    FontSize="16"
+                    Text="{Binding NeedStateText}"
+                    Margin="25, 50"
+                    VerticalOptions="Start" 
+                    HorizontalOptions="Center"
+                    Grid.Row="2"
             />
-            <ProgressBar
-                x:Name="ProgressBar"
-                ProgressColor="Green"
-                Progress="{Binding ProgressValue, Mode=OneWay}"
-                Margin="20"
-                ScaleY="10"
-            />
-            <Label 
-                    x:Name="StatsLabel"
-                    FontSize="22"
-                    Text="{Binding stats, Mode=OneWay}" 
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand"
-            />
-            <tamagotchi1:TamagotchiImage/>
             <ImageButton
                 x:Name="MovingButton"
+                Margin="0, 10"
                 Source="Football.png"
                 Clicked="FeedBoii"
                 HeightRequest="100"
                 BackgroundColor="White"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"/>
-            <!--Button
-                Style="{StaticResource LavenderStyle}"
-                Text="Feed Boii"
-                Clicked="FeedBoii"/-->
-        </StackLayout>
+                VerticalOptions="EndAndExpand"
+                HorizontalOptions="Center"
+                Grid.Row="2"
+             />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

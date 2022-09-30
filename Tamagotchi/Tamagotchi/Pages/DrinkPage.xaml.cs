@@ -11,7 +11,7 @@ namespace Tamagotchi
         public double ProgressValue => pageSpecificNeed.Value / 100;
         public string NeedValueText => $"Hydration: {pageSpecificNeed.ValueToOneDecimal()}";
 
-        public string DrinkText {
+        public string NeedStateText {
             get
             {
                 switch(pageSpecificNeed.NeedState)
@@ -28,12 +28,6 @@ namespace Tamagotchi
                     return "Your tamagotchi is having trouble communicating with you";
                 }
             }
-        }
-
-        public string stats
-        {
-            get { return Creature.NeedsToString; }
-            set { }
         }
 
         private uint animationLength = 750;
@@ -80,7 +74,7 @@ namespace Tamagotchi
                 ProgressBar.ProgressColor = progressColor;
                 ProgressBar.Progress = ProgressValue;
                 NeedText.Text = NeedValueText;
-                DrinkTextLabel.Text = DrinkText;
+                DrinkTextLabel.Text = NeedStateText;
             });
         }
 

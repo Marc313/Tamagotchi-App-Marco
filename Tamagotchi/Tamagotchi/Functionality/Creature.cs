@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Xamarin.Essentials;
 
@@ -12,6 +13,8 @@ namespace Tamagotchi
         public Need Energy { get; set; }
         public Need SocialEnergy { get; set; }
         public Need Company { get; set; }
+
+        private List<Need> needs;
 
         //private string needsText;
         public string NeedsToString
@@ -27,12 +30,13 @@ namespace Tamagotchi
 
         public Creature()
         {
-            Food = new Need();
-            Hydration = new Need();
-            Attention = new Need();
-            Energy = new Need();
-            SocialEnergy = new Need();
-            Company = new Need();
+            needs = new List<Need>();
+            needs.Add(Food = new Need());
+            needs.Add(Hydration = new Need());
+            needs.Add(Attention = new Need());
+            needs.Add(Energy = new Need());
+            needs.Add(SocialEnergy = new Need());
+            needs.Add(Company = new Need());
 
             App.OnStartEvent += CheckForTimePenalty;
             App.OnResumeEvent += CheckForTimePenalty;
@@ -62,12 +66,10 @@ namespace Tamagotchi
 
         public void ReceiveAllTimePenalties(double timePassed)
         {
-            Food.ReceiveTimePenalty(timePassed);
-            Hydration.ReceiveTimePenalty(timePassed);
-            Attention.ReceiveTimePenalty(timePassed);
-            Energy.ReceiveTimePenalty(timePassed);
-            SocialEnergy.ReceiveTimePenalty(timePassed);
-            Company.ReceiveTimePenalty(timePassed);
+            foreach (Need need in needs)
+            {
+                need.ReceiveTimePenalty(timePassed);
+            }
         }
 
         private void CheckForTimePenalty()

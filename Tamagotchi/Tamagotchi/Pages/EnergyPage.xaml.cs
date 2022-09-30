@@ -11,11 +11,26 @@ namespace Tamagotchi
         public Creature Creature { get; set; }
         public Need pageSpecificNeed => Creature.Energy;
         public double ProgressValue => pageSpecificNeed.Value / 100;
+        public string NeedValueText => $"Energy: {pageSpecificNeed.ValueToOneDecimal()}";
 
-        public string stats
+        public string NeedStateText
         {
-            get { return Creature.NeedsToString; }
-            set { }
+            get
+            {
+                switch (pageSpecificNeed.NeedState)
+                {
+                    case Need.State.HEALTHY:
+                        return "Your tamagotchi is well rested";
+                    case Need.State.NOTGREAT:
+                        return "Your tamagotchi is losing its energy";
+                    case Need.State.DANGER:
+                        return "Your tamagotchi is tired, send it to bed";
+                    case Need.State.EMERGENCY:
+                        return "Your tamagotchi is exhausted and should sleep immediately!";
+                    default:
+                        return "Your tamagotchi is having trouble communicating with you";
+                }
+            }
         }
 
         private uint animationLenght = 500;
@@ -60,7 +75,8 @@ namespace Tamagotchi
                 Color progressColor = ColorManager.GetColorFromState(pageSpecificNeed.NeedState);
                 ProgressBar.ProgressColor = progressColor;
                 ProgressBar.Progress = ProgressValue;
-                StatsLabel.Text = stats;
+                NeedText.Text = NeedValueText;
+                EnergyTextLabel.Text = NeedStateText;
             });
         }
 
