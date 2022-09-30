@@ -75,17 +75,9 @@ namespace Tamagotchi
             DecreaseValue(timePassed * penaltyPerSecond);
         }
 
-        public string ValueToOneDecimal()
+        public double ValueToOneDecimal()
         {
-            string valueString = Value.ToString();
-            if (valueString.Length <= 3)
-            {
-                return valueString;
-            }
-            else
-            {
-                return Value.ToString().Substring(0, 4);
-            }
+            return Math.Round(Value * 10.0) / 10.0;
         }
     }
 }

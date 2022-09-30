@@ -7,10 +7,10 @@ namespace Tamagotchi
 {
     public static class ColorManager
     {
-        public static Color HealthyColor => Color.LimeGreen;
-        public static Color NotGreatColor => Color.FromHex("a6f67a");
-        public static Color DangerColor => Color.Orange;
-        public static Color EmergencyColor => Color.Red;
+        private static Color HealthyColor => Color.LimeGreen;
+        private static Color NotGreatColor => Color.FromHex("a6f67a");
+        private static Color DangerColor => Color.Orange;
+        private static Color EmergencyColor => Color.Red;
 
         public static Color GetColorFromState(Need.State state)
         {

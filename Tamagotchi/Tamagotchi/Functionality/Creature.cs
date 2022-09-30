@@ -7,6 +7,20 @@ namespace Tamagotchi
 {
     public class Creature : INotifyPropertyChanged
     {
+        public enum CreatureState { HAPPY, TIRED, BORED, UNDERNOURISHED }
+
+        public CreatureState CurrentState
+        {
+            get
+            {
+                if (LowestNeed().Value > 60) return CreatureState.HAPPY;
+                else if (LowestNeed() == Food || LowestNeed() == Hydration) return CreatureState.UNDERNOURISHED;
+                else if (LowestNeed() == Attention || LowestNeed() == Company) return CreatureState.BORED;
+                else if (LowestNeed() == Energy || LowestNeed() == SocialEnergy) return CreatureState.TIRED;
+                return CreatureState.HAPPY;
+            }
+        }
+
         public Need Food { get; set; }
         public Need Hydration { get; set; }
         public Need Attention { get; set; }
@@ -89,6 +103,22 @@ namespace Tamagotchi
         private void InvokeCreatureChanged()
         {
             OnCreatureChanged?.Invoke();
+        }
+
+        private Need LowestNeed()
+        {
+            Need lowestNeed = null;
+            double lowestValue = double.MaxValue;
+            foreach (Need need in needs)
+            {
+                if (need.Value < lowestValue)
+                {
+                    lowestValue = need.Value;
+                    lowestNeed = need;
+                }
+            }
+
+            return lowestNeed;
         }
     }
 }

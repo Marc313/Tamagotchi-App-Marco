@@ -6,11 +6,10 @@ namespace Tamagotchi
 {
     public class DataStorer
     {
-        // Koppel aan app
-
         private string CreatureKey = "Creature";
 
-        // CRUD Operations: Create, Read, Update, Delete
+        // CRUD Operations: Create, Read, Update, Delete \\
+
         public bool CreateData(Creature creature)
         {
             string creatureSerialized = JsonConvert.SerializeObject(creature);

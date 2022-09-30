@@ -79,6 +79,7 @@ namespace Tamagotchi
                 ProgressBar.Progress = ProgressValue;
                 NeedText.Text = NeedValueText;
                 AttentionTextLabel.Text = NeedStateText;
+                TamagotchiImage.Source = CreatureStateResponse.GetImageSourceFromState(Creature.CurrentState);
             });
         }
 

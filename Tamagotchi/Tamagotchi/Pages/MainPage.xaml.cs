@@ -57,6 +57,8 @@ namespace Tamagotchi
             Device.BeginInvokeOnMainThread(() =>
             {
                 UpdateButtonColors();
+                StateText.Text = CreatureStateResponse.GetTextFromState(Creature.CurrentState);
+                TamagotchiImage.Source = CreatureStateResponse.GetImageSourceFromState(Creature.CurrentState);
             });
         }
 
@@ -86,7 +88,6 @@ namespace Tamagotchi
             Creature.OnCreatureChanged += SaveCreatureData;
 
             UpdateUI();
-
         }
 
         // Button EventHandlers \\

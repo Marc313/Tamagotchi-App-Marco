@@ -69,6 +69,7 @@ namespace Tamagotchi.Pages
                 ProgressBar.Progress = ProgressValue;
                 NeedText.Text = NeedValueText;
                 CompanyTextLabel.Text = NeedStateText;
+                TamagotchiImage.Source = CreatureStateResponse.GetImageSourceFromState(Creature.CurrentState);
             });
         }
 

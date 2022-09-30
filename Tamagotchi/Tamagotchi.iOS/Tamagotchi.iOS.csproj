@@ -69,6 +69,8 @@
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <BundleResource Include="Resources\Cool_Tamagotchi.webp" />
+    <BundleResource Include="Resources\KPThirsty.webp" />
+    <BundleResource Include="Resources\KPBored.webp" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -144,9 +146,6 @@
     <BundleResource Include="Resources\Basic_Tamagotchi.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\MARCO.mp3" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\Burger.png" />
   </ItemGroup>
   <ItemGroup>
@@ -163,5 +162,11 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Game.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\KPTired.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\KPHappy.png" />
   </ItemGroup>
 </Project>

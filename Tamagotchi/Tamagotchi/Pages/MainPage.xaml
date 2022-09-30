@@ -25,14 +25,18 @@
                     Grid.Row="0"
                 />
                 <Label 
+                    x:Name="StateText"
                     Text="On this page you will see if your tamagotchi is dying or not!" 
                     FontSize="16" 
                     Padding="30,0,30,0"
                 />
             </StackLayout>
-            <Image Source="Cool_Tamagotchi.webp" 
-                   HeightRequest="200"
-                   Grid.Row="1"
+            <!-- When using a view, the Grid.Row did not work for me and the layout was messed up :(-->
+            <Image 
+                    x:Name="TamagotchiImage"
+                    Source="Cool_Tamagotchi.webp" 
+                    HeightRequest="200"
+                    Grid.Row="1"
             />
             <Grid Padding="30, 10" Grid.Row="3">
                 <Button 
